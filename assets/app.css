@@ -1,0 +1,20 @@
+html, body {
+    height: 100vh;
+}
+
+.div-player-buttons {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 4fr 1fr 2fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr 4fr 1fr 2fr 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    height: 100vh;
+    }
+    
+#btn-player-1 { grid-area: 2 / 4 / 3 / 5; }
+#btn-player-2 { grid-area: 4 / 6 / 5 / 7; }
+#btn-player-3 { grid-area: 6 / 4 / 7 / 5; }
+#btn-player-4 { grid-area: 4 / 2 / 5 / 3; }
+#div-tbl-points { display: grid;} 
+#tbl-points {grid-area: 4 / 4 / 5 / 5; }
+    
