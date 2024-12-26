@@ -41,8 +41,13 @@ def generate_modal():
     ]
 )
 
+def calculate_totals(data):
+    """Calculate the total for each column."""
+    return [sum(column) for column in zip(*data)]
+
 def generate_table_rows(data):
     return [html.Tr([html.Td(value) for value in row]) for row in data]
 
 def generate_table_totals(data):
-    return html.Tr([html.Td(total) for total in data], className="total-row")
+    totals = calculate_totals(data)
+    return html.Tr([html.Td(total) for total in totals], className="total-row")
