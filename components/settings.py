@@ -1,5 +1,5 @@
 import dash_bootstrap_components as dbc
-from dash import html
+from dash import html, Output, Input, State, callback
 
 
 def generate_settings_button():
@@ -25,3 +25,16 @@ def generate_settings_modal():
         scrollable=True,
         is_open=False,
     ),
+
+def register_callbacks(app):
+    @app.callback(
+        Output("modal-settings", "is_open"),
+        Input("btn-settings", "n_clicks"),
+        Input("close-modal-settings", "n_clicks"),
+        State("modal-settings", "is_open"),
+    )
+    def toggle_modal_settings(settings_btn, close_btn, is_open):
+        if settings_btn or close_btn:
+            return not is_open
+        return is_open
+

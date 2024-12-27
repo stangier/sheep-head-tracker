@@ -1,5 +1,5 @@
 import dash_bootstrap_components as dbc
-from dash import html
+from dash import html, callback, Output, Input, State, ctx
 
 
 def generate_modal():
@@ -24,3 +24,36 @@ def generate_modal():
         )
     ]
 )
+
+
+def register_callbacks(app):
+    # Callback to toggle the modal visibility
+    @app.callback(
+        # Outputs and inputs for the callback
+        Output("modal-match", "is_open"),
+        Output("modal-match-body", "children"),
+        Input("btn-player-1", "n_clicks"),
+        Input("btn-player-2", "n_clicks"),
+        Input("btn-player-3", "n_clicks"),
+        Input("btn-player-4", "n_clicks"),
+        Input("close-modal-match", "n_clicks"),
+        State("modal-match", "is_open"),
+    )
+    def toggle_modal_match(n1, n2, n3, n4, n_close, is_open):
+        if not ctx.triggered:
+            return is_open, ""
+
+        button_id = ctx.triggered[0]["prop_id"].split(".")[0]
+
+        if button_id == "close-modal-match":
+            return not is_open, ""
+
+        player_map = {
+            "btn-player-1": "Player One",
+            "btn-player-2": "Player Two",
+            "btn-player-3": "Player Three",
+            "btn-player-4": "Player Four",
+        }
+
+        return not is_open, f"Action originated from {player_map[button_id]}"
+

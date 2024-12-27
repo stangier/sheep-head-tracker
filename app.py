@@ -33,30 +33,18 @@ div_table = html.Div(dbc.Table(table_header + table_body, bordered=True, id="tbl
 toggles = overview.generate_toggles()
 div_toggles = html.Div(toggles)
 
-# Modal components showing when clicking on a player button
+# Match components
 modal_match = match.generate_modal()
 div_modal_match = html.Div(modal_match)
+match.register_callbacks(app)
 
-# Settings button
+# Settings components
 settings_button = settings.generate_settings_button()
 div_settings = html.Div(settings_button)
-
-# Modal components showing when clicking on a player button
 modal_settings = settings.generate_settings_modal()
 div_modal_settings = html.Div(modal_settings)
-
-
-@app.callback(
-    Output("modal-settings", "is_open"),
-    Input("btn-settings", "n_clicks"),
-    Input("close-modal-settings", "n_clicks"),
-    State("modal-settings", "is_open"),
-)
-def toggle_modal_settings(settings_btn, close_btn, is_open):
-    if settings_btn or close_btn:
-        return not is_open
-    return is_open
-
+settings.register_callbacks(app)
+git
 
 # Main layout of the app
 div_main = html.Div([
@@ -68,36 +56,6 @@ div_main = html.Div([
     div_modal_settings
 ])
 app.layout = div_main
-
-# Callback to toggle the modal visibility
-@app.callback(
-    # Outputs and inputs for the callback
-    Output("modal-match", "is_open"),
-    Output("modal-match-body", "children"),
-    Input("btn-player-1", "n_clicks"),
-    Input("btn-player-2", "n_clicks"),
-    Input("btn-player-3", "n_clicks"),
-    Input("btn-player-4", "n_clicks"),
-    Input("close-modal-match", "n_clicks"),
-    State("modal-match", "is_open"),
-)
-def toggle_modal_match(n1, n2, n3, n4, n_close, is_open):
-    if not ctx.triggered:
-        return is_open, ""
-
-    button_id = ctx.triggered[0]["prop_id"].split(".")[0]
-
-    if button_id == "close-modal-match":
-        return not is_open, ""
-
-    player_map = {
-        "btn-player-1": "Player One",
-        "btn-player-2": "Player Two",
-        "btn-player-3": "Player Three",
-        "btn-player-4": "Player Four",
-    }
-
-    return not is_open, f"Action originated from {player_map[button_id]}"
 
 @app.callback(
     Output("tbl-points", "children"),
