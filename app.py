@@ -37,12 +37,17 @@ div_toggles = html.Div(toggles)
 modal = components.generate_modal()
 div_modal = html.Div(modal)
 
+# Settings button
+settings_button = components.generate_settings_button()
+div_settings = html.Div(settings_button)
+
 # Main layout of the app
 div_main = html.Div([
     div_player_buttons,
     div_table,
     div_toggles,
-    div_modal
+    div_modal,
+    div_settings
 ])
 app.layout = div_main
 

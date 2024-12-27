@@ -93,11 +93,18 @@ html, body {
     transform: translate(-50%, -50%);
 }
 
-.fist-button {
+.image-button {
     max-width: 3vw;
     padding: 0.5vw;
 }
 
-.fist-image {
+.image-on-button {
     width: 2vw;
+}
+
+#btn-settings {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 1vw;
 }
