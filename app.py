@@ -1,10 +1,13 @@
 # Import necessary libraries and components
+import flask
 from dash import Dash, html, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
 from src.components import generate_player_buttons, generate_table_header, generate_table_rows, generate_table_totals, generate_modal
 
 # Initialize the Dash app with a Bootstrap theme
-app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
+server = flask.Flask(__name__)  # define flask app.server
+dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
+app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY, dbc_css], server=server)
 
 player_buttons = generate_player_buttons()
 table_header = generate_table_header()
