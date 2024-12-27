@@ -7,25 +7,25 @@ def generate_player_buttons():
         # Each button represents a player
         html.Div([
             dbc.Button("Player One", color="primary", class_name="btn-player", id="btn-player-1"),
-            dbc.Button(html.Img(src="assets/knocking_fist.svg", className="fist-image"),
+            dbc.Button(html.Img(src="assets/img/knocking_fist.svg", className="fist-image"),
                        class_name="fist-button",
                        id="btn-fist-player-1")
         ], id="div-btn-player-1"),
         html.Div([
             dbc.Button("Player Two", color="primary", class_name="btn-player", id="btn-player-2"),
-            dbc.Button(html.Img(src="assets/knocking_fist.svg", className="fist-image"),
+            dbc.Button(html.Img(src="assets/img/knocking_fist.svg", className="fist-image"),
                        class_name="fist-button",
                        id="btn-fist-player-2")
         ], id="div-btn-player-2"),
         html.Div([
             dbc.Button("Player Three", color="primary", class_name="btn-player", id="btn-player-3"),
-            dbc.Button(html.Img(src="assets/knocking_fist.svg", className="fist-image"),
+            dbc.Button(html.Img(src="assets/img/knocking_fist.svg", className="fist-image"),
                        class_name="fist-button",
                        id="btn-fist-player-2")
         ], id="div-btn-player-3"),
         html.Div([
             dbc.Button("Player Four", color="primary", class_name="btn-player", id="btn-player-4"),
-            dbc.Button(html.Img(src="assets/knocking_fist.svg", className="fist-image"),
+            dbc.Button(html.Img(src="assets/img/knocking_fist.svg", className="fist-image"),
                        class_name="fist-button",
                        id="btn-fist-player-2")
         ], id="div-btn-player-4")
