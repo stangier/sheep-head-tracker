@@ -32,11 +32,6 @@ def generate_player_buttons():
     ]
     return player_buttons
 
-def generate_settings_button():
-    return dbc.Button(html.Img(src="assets/img/gears.svg", className="image-on-button"),
-                      class_name="image-button",
-                      id="btn-settings")
-
 def generate_table_header():
     table_header = [
         html.Thead(html.Tr([html.Th("Player One"), html.Th("Player Two"), html.Th("Player Three"), html.Th("Player Four")]))
@@ -53,14 +48,14 @@ def generate_modal():
                 dbc.ModalBody([
                     html.Div("Enter a number to add to the player's score:"),
                     dbc.Input(type="number", id="score-input", placeholder="Enter number"),
-                    html.Div(id="modal-body"),
+                    html.Div(id="modal-match-body"),
                     dbc.Button("Add to Score", id="confirm-add", color="success", className="mt-2")
                 ]),
                 dbc.ModalFooter(
-                    dbc.Button("Close", id="close-modal", className="ml-auto")
+                    dbc.Button("Close", id="close-modal-match", className="ml-auto")
                 ),
             ],
-            id="modal",
+            id="modal-match",
             is_open=False,
         )
     ]

@@ -3,6 +3,7 @@ import flask
 from dash import Dash, html, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
 import src.components as components
+import src.components_settings as components_settings
 
 # Initialize the Dash app with a Bootstrap theme
 server = flask.Flask(__name__)  # define flask app.server
@@ -34,42 +35,60 @@ toggles = components.generate_toggles()
 div_toggles = html.Div(toggles)
 
 # Modal components showing when clicking on a player button
-modal = components.generate_modal()
-div_modal = html.Div(modal)
+modal_match = components.generate_modal()
+div_modal_match = html.Div(modal_match)
 
 # Settings button
-settings_button = components.generate_settings_button()
+settings_button = components_settings.generate_settings_button()
 div_settings = html.Div(settings_button)
+
+# Modal components showing when clicking on a player button
+modal_settings = components_settings.generate_settings_modal()
+div_modal_settings = html.Div(modal_settings)
+
+
+@app.callback(
+    Output("modal-settings", "is_open"),
+    Input("btn-settings", "n_clicks"),
+    Input("close-modal-settings", "n_clicks"),
+    State("modal-settings", "is_open"),
+)
+def toggle_modal_settings(settings_btn, close_btn, is_open):
+    if settings_btn or close_btn:
+        return not is_open
+    return is_open
+
 
 # Main layout of the app
 div_main = html.Div([
     div_player_buttons,
     div_table,
     div_toggles,
-    div_modal,
-    div_settings
+    div_modal_match,
+    div_settings,
+    div_modal_settings
 ])
 app.layout = div_main
 
 # Callback to toggle the modal visibility
 @app.callback(
     # Outputs and inputs for the callback
-    Output("modal", "is_open"),
-    Output("modal-body", "children"),
+    Output("modal-match", "is_open"),
+    Output("modal-match-body", "children"),
     Input("btn-player-1", "n_clicks"),
     Input("btn-player-2", "n_clicks"),
     Input("btn-player-3", "n_clicks"),
     Input("btn-player-4", "n_clicks"),
-    Input("close-modal", "n_clicks"),
-    State("modal", "is_open"),
+    Input("close-modal-match", "n_clicks"),
+    State("modal-match", "is_open"),
 )
-def toggle_modal(n1, n2, n3, n4, n_close, is_open):
+def toggle_modal_match(n1, n2, n3, n4, n_close, is_open):
     if not ctx.triggered:
         return is_open, ""
 
     button_id = ctx.triggered[0]["prop_id"].split(".")[0]
 
-    if button_id == "close-modal":
+    if button_id == "close-modal-match":
         return not is_open, ""
 
     player_map = {
