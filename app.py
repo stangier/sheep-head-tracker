@@ -1,7 +1,7 @@
 # Import necessary libraries and components
 from dash import Dash, html, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
-from components import generate_player_buttons, generate_table_header, generate_table_rows, generate_table_totals, generate_modal
+from src.components import generate_player_buttons, generate_table_header, generate_table_rows, generate_table_totals, generate_modal
 
 # Initialize the Dash app with a Bootstrap theme
 app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
