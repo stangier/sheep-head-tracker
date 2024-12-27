@@ -6,6 +6,7 @@ COPY requirements.txt /workdir
 RUN pip install -r requirements.txt
 
 COPY app.py /workdir
+COPY src /workdir/src
 COPY assets /workdir/assets
 
 EXPOSE 8080
