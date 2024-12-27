@@ -1,0 +1,65 @@
+html, body {
+    height: 100vh;
+}
+
+.div-player-buttons {
+    position: relative;
+    height: 100vh;
+}
+
+#btn-player-1 {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#btn-player-2 {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
+#btn-player-3 {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#btn-player-4 {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+}
+#div-tbl-points { display: grid;} 
+#tbl-points-wrapper {
+    border: 1px solid #ccc; /* Add border to the table wrapper */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
+    max-height: 60vh; /* Limit the height of the table */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+#tbl-points th, #tbl-points td {
+    padding: 12px; /* Add padding for better spacing */
+    text-align: center; /* Center align text */
+}
+
+#tbl-points th {
+    font-weight: bold; /* Bold text for headers */
+}
+
+.total-row {
+    font-weight: bold; /* Bold text for total row */
+}
+
+#tbl-points {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 50%;
+    transform: translate(-50%, -50%);
+}
