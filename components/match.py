@@ -1,6 +1,20 @@
 import dash_bootstrap_components as dbc
 from dash import html
 
+# Spielart
+# Farbsolo / Wenz / Geier / Sauspiel
+
+# Sauspiel Paramter
+# Spielpartner
+
+# Farbsolo Parameter
+# Tout
+
+# Generelle Parameter
+# Anzahl Lfd.
+
+# Ausgang
+# Gewonnen / Verloren
 
 def generate_modal():
     return html.Div(
