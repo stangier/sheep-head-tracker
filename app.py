@@ -2,8 +2,7 @@
 import flask
 from dash import Dash, html, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
-import src.components as components
-import src.components_settings as components_settings
+from components import overview, match, settings
 
 # Initialize the Dash app with a Bootstrap theme
 server = flask.Flask(__name__)  # define flask app.server
@@ -11,7 +10,7 @@ dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.mi
 app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY, dbc_css], server=server)
 
 # Main player buttons
-player_buttons = components.generate_player_buttons()
+player_buttons = overview.generate_player_buttons()
 div_player_buttons = html.Div(player_buttons, className="div-player-buttons")
 
 # Score keeping table
@@ -22,28 +21,28 @@ data = [
     [25, 35, 45, 55]
 ]
 
-table_header = components.generate_table_header()
-table_rows = components.generate_table_rows(data)
-table_rows.append(components.generate_table_totals(data)) # Append totals
+table_header = overview.generate_table_header()
+table_rows = overview.generate_table_rows(data)
+table_rows.append(overview.generate_table_totals(data)) # Append totals
 table_body = [html.Tbody(table_rows)]
 
 div_table = html.Div(dbc.Table(table_header + table_body, bordered=True, id="tbl-points"),
                      id="tbl-points-wrapper")
 
 # General toggle switches applicable for all players
-toggles = components.generate_toggles()
+toggles = overview.generate_toggles()
 div_toggles = html.Div(toggles)
 
 # Modal components showing when clicking on a player button
-modal_match = components.generate_modal()
+modal_match = match.generate_modal()
 div_modal_match = html.Div(modal_match)
 
 # Settings button
-settings_button = components_settings.generate_settings_button()
+settings_button = settings.generate_settings_button()
 div_settings = html.Div(settings_button)
 
 # Modal components showing when clicking on a player button
-modal_settings = components_settings.generate_settings_modal()
+modal_settings = settings.generate_settings_modal()
 div_modal_settings = html.Div(modal_settings)
 
 
@@ -107,7 +106,7 @@ def toggle_modal_match(n1, n2, n3, n4, n_close, is_open):
     prevent_initial_call=True
 )
 def update_scores(n_clicks, score_to_add):
-    new_table_rows = components.generate_table_rows(data)
+    new_table_rows = overview.generate_table_rows(data)
 
     return [html.Tbody(new_table_rows)]
 
