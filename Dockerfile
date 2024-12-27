@@ -10,4 +10,4 @@ COPY assets /workdir/assets
 
 EXPOSE 8080
 
-ENTRYPOINT ["gunicorn", "main:server", "-b", ":8080"]
+ENTRYPOINT ["gunicorn", "app:server", "-b", ":8080"]
