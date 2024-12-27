@@ -2,15 +2,15 @@
 import flask
 from dash import Dash, html, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
-from src.components import generate_player_buttons, generate_table_header, generate_table_rows, generate_table_totals, generate_modal
+import src.components as components
 
 # Initialize the Dash app with a Bootstrap theme
 server = flask.Flask(__name__)  # define flask app.server
 dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
 app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY, dbc_css], server=server)
 
-player_buttons = generate_player_buttons()
-table_header = generate_table_header()
+player_buttons = components.generate_player_buttons()
+div_player_buttons = html.Div(player_buttons, className="div-player-buttons")
 
 data = [
     [10, 20, 30, 40],
@@ -18,25 +18,28 @@ data = [
     [20, 30, 40, 50],
     [25, 35, 45, 55]
 ]
-    
-table_rows = generate_table_rows(data)
-table_totals = generate_table_totals(data)
-table_rows.append(table_totals)
+
+table_header = components.generate_table_header()
+table_rows = components.generate_table_rows(data)
+table_rows.append(components.generate_table_totals(data)) # Append totals
 table_body = [html.Tbody(table_rows)]
 
-# Wrap the table in a div for styling and scrolling
-table = [
-    html.Div(
-        dbc.Table(table_header + table_body, bordered=True, id="tbl-points"),
-        id="tbl-points-wrapper"
-    )
-]
-buttons_and_table = html.Div(player_buttons + table, className="div-player-buttons")
+div_table = html.Div(dbc.Table(table_header + table_body, bordered=True, id="tbl-points"),
+                     id="tbl-points-wrapper")
 
-modal = generate_modal()
+toggles = components.generate_toggles()
+div_toggles = html.Div(toggles)
+
+modal = components.generate_modal()
+div_modal = html.Div(modal)
 
 # Main layout of the app
-div_main = html.Div([buttons_and_table, modal])
+div_main = html.Div([
+    div_player_buttons,
+    div_table,
+    div_toggles,
+    div_modal
+])
 app.layout = div_main
 
 # Callback to toggle the modal visibility
@@ -76,7 +79,7 @@ def toggle_modal(n1, n2, n3, n4, n_close, is_open):
     prevent_initial_call=True
 )
 def update_scores(n_clicks, score_to_add):
-    new_table_rows = generate_table_rows(data)
+    new_table_rows = components.generate_table_rows(data)
 
     return [html.Tbody(new_table_rows)]
 

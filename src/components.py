@@ -51,3 +51,14 @@ def generate_table_rows(data):
 def generate_table_totals(data):
     totals = calculate_totals(data)
     return html.Tr([html.Td(total) for total in totals], className="total-row")
+
+def generate_toggles():
+    return dbc.Checklist(
+            options=[
+                {"label": "Stock", "value": 1},
+                {"label": "Geklopft", "value": 2},
+            ],
+            value=[],
+            id="toggles",
+            switch=True
+        )
