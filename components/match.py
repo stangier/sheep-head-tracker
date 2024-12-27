@@ -1,5 +1,5 @@
 import dash_bootstrap_components as dbc
-from dash import html, callback, Output, Input, State, ctx
+from dash import html, Output, Input, State, ctx
 
 
 def generate_modal():

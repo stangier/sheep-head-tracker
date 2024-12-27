@@ -44,7 +44,6 @@ div_settings = html.Div(settings_button)
 modal_settings = settings.generate_settings_modal()
 div_modal_settings = html.Div(modal_settings)
 settings.register_callbacks(app)
-git
 
 # Main layout of the app
 div_main = html.Div([
