@@ -7,33 +7,62 @@ html, body {
     height: 100vh;
 }
 
-#btn-player-1 {
+#div-btn-player-1 {
     position: absolute;
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
-#btn-player-2 {
+#btn-fist-player-1 {
+    margin-top: 1vw;
+}
+
+#div-btn-player-2 {
     position: absolute;
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
-#btn-player-3 {
+#btn-fist-player-2 {
+    margin-top: 1vw;
+}
+
+#div-btn-player-3 {
     position: absolute;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
-#btn-player-4 {
+#btn-fist-player-3 {
+    margin-top: 1vw;
+}
+
+#div-btn-player-4 {
     position: absolute;
     top: 50%;
     left: 10px;
     transform: translateY(-50%);
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
+
+#btn-fist-player-4 {
+    margin-top: 1vw;
+}
+
 #div-tbl-points { display: grid;} 
 #tbl-points-wrapper {
     border: 1px solid #ccc; /* Add border to the table wrapper */
@@ -62,4 +91,13 @@ html, body {
     top: 50%;
     width: 50%;
     transform: translate(-50%, -50%);
+}
+
+.fist-button {
+    max-width: 3vw;
+    padding: 0.5vw;
+}
+
+.fist-image {
+    width: 2vw;
 }
