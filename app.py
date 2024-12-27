@@ -9,9 +9,11 @@ server = flask.Flask(__name__)  # define flask app.server
 dbc_css = "https://cdn.jsdelivr.net/gh/AnnMarieW/dash-bootstrap-templates/dbc.min.css"
 app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY, dbc_css], server=server)
 
+# Main player buttons
 player_buttons = components.generate_player_buttons()
 div_player_buttons = html.Div(player_buttons, className="div-player-buttons")
 
+# Score keeping table
 data = [
     [10, 20, 30, 40],
     [15, 25, 35, 45],
@@ -27,9 +29,11 @@ table_body = [html.Tbody(table_rows)]
 div_table = html.Div(dbc.Table(table_header + table_body, bordered=True, id="tbl-points"),
                      id="tbl-points-wrapper")
 
+# General toggle switches applicable for all players
 toggles = components.generate_toggles()
 div_toggles = html.Div(toggles)
 
+# Modal components showing when clicking on a player button
 modal = components.generate_modal()
 div_modal = html.Div(modal)
 
