@@ -3,6 +3,7 @@ import flask
 from dash import Dash, html, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
 from components import overview, match, settings
+from components.settings import settings_storage
 
 # Initialize the Dash app with a Bootstrap theme
 server = flask.Flask(__name__)  # define flask app.server
@@ -41,12 +42,13 @@ match.register_callbacks(app)
 # Settings components
 settings_button = settings.generate_settings_button()
 div_settings = html.Div(settings_button)
-modal_settings = settings.generate_settings_modal()
+modal_settings = settings.generate_settings_modal(app)
 div_modal_settings = html.Div(modal_settings)
 settings.register_callbacks(app)
 
 # Main layout of the app
 div_main = html.Div([
+    settings_storage,
     div_player_buttons,
     div_table,
     div_toggles,
